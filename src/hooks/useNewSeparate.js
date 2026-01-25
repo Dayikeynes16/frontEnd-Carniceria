@@ -8,7 +8,7 @@ export const useNewSeparate = () => {
     const onNewValue = ( num ) => {
         const { first, second } = separatePoint(num);
         setFirst(first);
-        setSecond(second)
+        setSecond(second.substring(0,2))
     }
 
   return {

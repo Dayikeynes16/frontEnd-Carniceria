@@ -4,7 +4,7 @@ import { useAlerts } from "../hooks/useAlerts";
 
 export const ButtonConfirm = ({label}) => {
 
-  const { setProducts, products, noteProduct, setNoteProduct, amount, setAmount, cost, setCost, setTotal, total } = useContext( MetContext );
+  const { setProducts, products, noteProduct, setNoteProduct, amount, setAmount, cost, setCost, setTotal, total, price } = useContext( MetContext );
   const { addAlert } = useAlerts();
 
   const onAddProduct = () => {
@@ -12,9 +12,8 @@ export const ButtonConfirm = ({label}) => {
     if ( !noteProduct.id ) {
       addAlert('No hay nada que agregar', 'alert-yellow');
       return;
-    }; 
-
-    setProducts([ { id: new Date().getTime(), amount, precio_de_venta, name: noteProduct.nombre }, ...products]);
+    }
+    setProducts([ { id: noteProduct.id, amount, price,setAmount,cost, name: noteProduct.nombre, producto_id_cesta: new Date().getTime() }, ...products]);
     localStorage.setItem('products', JSON.stringify(products));
     console.log(parseFloat(total) + parseFloat(cost));
     setTotal( parseFloat(total) + parseFloat(cost) );

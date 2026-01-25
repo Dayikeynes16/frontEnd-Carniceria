@@ -4,7 +4,6 @@ import { useNewSeparate } from "../hooks";
 
 export const OutputCost = ({ cost }) => {
 
-    console.log('Valor de cost antes de separatePoint:', cost);
 
     const { first, second } = separatePoint(cost);
 
@@ -12,7 +11,6 @@ export const OutputCost = ({ cost }) => {
 
     useEffect(() => {
         onNewValue(cost);
-        console.log('hokisnsjs',cost);
         
     }, [cost])
     

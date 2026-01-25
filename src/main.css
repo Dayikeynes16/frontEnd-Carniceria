@@ -1,498 +1,512 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    background-color: #EEEDF2;
-    margin: 0;
-    padding: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #eeedf2;
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
 }
 
 p {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 img {
-    width: max-content;
-    max-width: 100%;
+  width: max-content;
+  max-width: 100%;
 }
 
 ::-webkit-scrollbar {
-    width: 5px; /* Cambia este valor al ancho deseado */
+  width: 5px; /* Cambia este valor al ancho deseado */
 }
 
 /* Estilo de la pista de la barra de desplazamiento */
 ::-webkit-scrollbar-track {
-    background: #F0F0F0; /* Color de fondo de la pista */
-    border-radius: 15px;
+  background: #f0f0f0; /* Color de fondo de la pista */
+  border-radius: 15px;
 }
 
 /* Estilo del pulgar de la barra de desplazamiento */
 ::-webkit-scrollbar-thumb {
-    background: #267365; /* Color del pulgar */
-    border-radius: 15px;
+  background: #267365; /* Color del pulgar */
+  border-radius: 15px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-    cursor:grab;
+  background: #555;
+  cursor: grab;
 }
 
 .contentMetNone {
-    background-color: #1e1e1e30;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    z-index: 100;
+  background-color: #1e1e1e30;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  z-index: 100;
 }
 
 .contentMet {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    border-radius: 15px;
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    overflow: hidden;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
-    .contentMet {
-        width: 95%;
-        height: 85%;
-        padding: 30px;
-    }
+  .contentMet {
+    width: 95%;
+    height: 85%;
+    padding: 30px;
+  }
 }
 
 @media (min-width: 1280px) {
-    .contentMet {
-        width: 75%;
-        height: 91%;
-        padding: 50px;
-    }
+  .contentMet {
+    width: 75%;
+    height: 91%;
+    padding: 50px;
+  }
 }
 
 @media (min-width: 1440px) {
-    .contentMet {
-        width: 75%;
-        height: 85%;
-        padding: 50px;
-    }
+  .contentMet {
+    width: 75%;
+    height: 85%;
+    padding: 50px;
+  }
 }
 
-.contentMetHeader{
-    display: flex;
-    justify-content: space-between;
+.contentMetHeader {
+  display: flex;
+  justify-content: space-between;
 }
 
 .mets {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 20px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    justify-items: center;
-    padding-right: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  justify-items: center;
+  padding-right: 5px;
 }
 
 @media (min-width: 768px) {
-    .mets {
-        grid-template-columns: repeat(4, 1fr);
-        padding-right: 10px;
-    }
+  .mets {
+    grid-template-columns: repeat(4, 1fr);
+    padding-right: 10px;
+  }
 }
 
 @media (min-width: 1024px) {
-    .mets {
-        grid-template-columns: repeat(5, 1fr);
-    }
+  .mets {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 @media (min-width: 1440px) {
-    .mets {
-        grid-template-columns: repeat(6, 1fr);
-    }
+  .mets {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 .targgetMet {
-    width: 90px;
-    background-color: #F0F0F0;
-    padding: 30px;
-    border-radius: 15px;
-    box-sizing: content-box;
-    transition: all 200ms;
-    cursor: pointer;
+  width: 90px;
+  background-color: #f0f0f0;
+  padding: 30px;
+  border-radius: 15px;
+  box-sizing: content-box;
+  transition: all 200ms;
+  cursor: pointer;
 }
 
 .targgetMet:hover {
-    background-color: #EBE0D5;
+  background-color: #ebe0d5;
 }
 
 .targgetMet h2 {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .targgetMet p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .targgetMetSelect {
-    background-color: #EBE0D5;
+  background-color: #ebe0d5;
 }
 
 .seeker {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .seeker input {
-    width: 200px;
-    border: none;
-    border-bottom: 1px solid #267365;
-    font-size: 14px;
-    padding: 5px 15px;
-    transition: all 400ms;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #267365;
+  font-size: 14px;
+  padding: 5px 15px;
+  transition: all 400ms;
 }
 
 @media (min-width: 768px) {
-    .seeker input {
-        width: 400px;
-    }
+  .seeker input {
+    width: 400px;
+  }
 }
 
 .seeker input:focus {
-    width: 250px;
+  width: 250px;
 }
 
 @media (min-width: 768px) {
-    .seeker input:focus {
-        width: 450px;
-    }
+  .seeker input:focus {
+    width: 450px;
+  }
 }
 
 .seeker input::placeholder {
-    color: #267365;
+  color: #267365;
 }
 
 .seeker button {
-    background-color: transparent;
-    border: 1px solid transparent;
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
 .seeker button i {
-    font-size: 20px;
-    color: #267365;
+  font-size: 20px;
+  color: #267365;
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 .closeX {
-    background-color: transparent;
-    border: 1px solid transparent;
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
 .closeX i {
-    font-size: 28px;
-    transition: 200ms;
+  font-size: 28px;
+  transition: 200ms;
 }
 
 .closeX:hover i {
-    color: #BA2222;
+  color: #ba2222;
 }
 
 .btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 12px;
-    border-radius: 15px;
-    font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 15px;
+  font-size: 16px;
 }
 
 .btn-text {
-    padding: 12px 16px;
+  padding: 12px 16px;
 }
 
 .btn i {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .buttonCart {
-    border: 1px solid #08070A;
-    background-color: #08070A;
-    color: #ffffff;
+  border: 1px solid #08070a;
+  background-color: #08070a;
+  color: #ffffff;
 }
 
 .buttonConfirm {
-    border: 1px solid #267365;
-    background-color: #267365;
-    color: #ffffff;
+  border: 1px solid #267365;
+  background-color: #267365;
+  color: #ffffff;
 }
 
 .buttonDelete {
-    border: 1px solid #BA2222;
-    background-color: #BA2222;
-    color: #ffffff;
+  border: 1px solid #ba2222;
+  background-color: #ba2222;
+  color: #ffffff;
 }
 
 .buttonDeleteV2 {
-    border: 1px solid #A6A3A3;
-    background-color: #A6A3A3;
-    color: #ffffff;
+  border: 1px solid #a6a3a3;
+  background-color: #a6a3a3;
+  color: #ffffff;
 }
 
 .navMain {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 15px;
-    margin: 10px;
-    background-color: #ffffff;
-    border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 15px;
 }
 
 .navMain div {
-    display: flex;
-    gap: 120px;
+  display: flex;
+  gap: 120px;
 }
 
 .noteMet {
-    width: 501px;
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 15px;
-    margin-left: 10px;
+  width: 501px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 15px;
+  margin-left: 10px;
 }
 
 .noteMetButtons {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .output {
-    padding: 0 30px;
+  padding: 0 30px;
 }
 
 .outputBody hr {
-    margin: 15px 0 0 0;
+  margin: 15px 0 0 0;
 }
 
 .output div {
-    display: flex;
-    align-items: end;
-    justify-content: end;
+  display: flex;
+  align-items: end;
+  justify-content: end;
 }
 
-.output h1, .output h3, .output span, .output h2{
-    margin: 0;
-    padding: 0;
-    font-size: 28px;
-    font-weight: 600;
+.output h1,
+.output h3,
+.output span,
+.output h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.output h3 span {
+  font-size: 55px;
+  line-height: 1;
+  font-weight: 600;
 }
 
 .output h2 {
-    font-size: 35px;
-    font-weight: 600;
+  font-size: 35px;
+  font-weight: 600;
 }
 
 .output h1 {
-    line-height: 1;  
-    font-size: 60px;
-    font-weight: 500;
+  line-height: 1;
+  font-size: 60px;
+  font-weight: 500;
 }
 
 .outputCostSpan span {
-    font-size: 40px;
-    font-weight: 400;
+  font-size: 40px;
+  font-weight: 400;
 }
 
 .outputDetails div {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    padding-left: 20px;
-    padding-top: 5px;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  padding-left: 20px;
+  padding-top: 5px;
+  gap: 8px;
 }
 
-.outputDetails span, .outputDetails p {
-    color: #A6A3A3;
-    font-size: 16px;
-    font-weight: 400;
+.outputDetails span,
+.outputDetails p {
+  color: black;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .outputTotal div {
-    justify-content: center;
+  justify-content: center;
 }
 
 .noteMetOrder {
-    font-size: 25px;
-    font-weight: 600;
-    padding-left: 30px;
-    margin: 30px 0;
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 30px;
+  margin: 30px 0;
 }
 
-.noteMetButtons{
-    padding-bottom: 30px;
+.noteMetButtons {
+  padding-bottom: 30px;
 }
 
 .boxMain {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .boxMainNotes {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    align-content: flex-start;
-    padding-right: 10px;
-    flex-wrap: wrap;
-    width: 64%;
-    gap: 20px 30px;
-    box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding-right: 10px;
+  flex-wrap: wrap;
+  width: 64%;
+  gap: 20px 30px;
+  box-sizing: border-box;
 }
 
 .minBoxProductAdded {
-    width: 220px;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
+  width: 220px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .minBoxProductAdded div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .minBoxProductAdded h3 {
-    line-height: 1.2;
-    padding: 0;
-    margin: 0;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
 }
 
 .minBoxProductAdded button {
-    background-color: transparent;
-    border: 1px solid transparent;
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
 .minBoxProductAdded i {
-    color: #08070A;
-    font-size: 24px;
+  color: #08070a;
+  font-size: 24px;
 }
 
 .minBoxProductAdded p {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .loadingBody {
-    width: 100%;
-    height: 100vh;
-    background-color: #1e1e1e83;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #ffffff;
+  width: 100%;
+  height: 100vh;
+  background-color: #1e1e1e83;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #ffffff;
 }
 
 .loading {
-    background-color: #ffffff;
-    width: 50px;
-    height: 50px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading i {
-    font-size: 24px;
-    color: #08070A;
-    animation: spin 5s linear infinite;
+  font-size: 24px;
+  color: #08070a;
+  animation: spin 5s linear infinite;
 }
 
 @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .contentAlerts {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 15px;
-    z-index: 1000;
-    margin-top: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  z-index: 1000;
+  margin-top: 10px;
 }
 
-.alert{
-    width: 100%;
-    border-radius: 5px;
-    padding: 10px 30px;
+.alert {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 30px;
 }
 
 .alert-yellow {
-    background-color: #fff700;
-    color: #08070A;
+  background-color: #fff700;
+  color: #08070a;
 }
 
 .alert-red {
-    background-color: #d70000;
-    color: #ffffff;
+  background-color: #d70000;
+  color: #ffffff;
 }
 
 .buttonDouble {
-    background-color: #F0F0F0;
-    display: flex;
-    align-items: stretch;
-    padding: 0;
-    gap: 0;
-    border: 2px solid #267365;
-    width: 150px;
-    height: 45px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+  border: 2px solid #267365;
+  width: 150px;
+  height: 45px;
 }
 
 .buttonDoubleBtn {
-    /* padding: 10px 10px; */
-    flex: 1;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 100ms;
+  /* padding: 10px 10px; */
+  flex: 1;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 100ms;
 }
 
 .buttonDoubleOne {
-    flex: 1.1;
+  flex: 1.1;
 }
 
 /* .buttonDoubleTwo {
@@ -500,7 +514,29 @@ input:focus {
 } */
 
 .buttonDoubleActive {
-    background-color: #267365;
-    color: #ffffff;
-    flex: 1.5;
+  background-color: #267365;
+  color: #ffffff;
+  flex: 1.5;
+}
+
+.btn-category {
+  background-color: #ffffff;
+  border: 1px solid #267365;
+  color: #267365;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-category:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-category.active {
+  background-color: #267365;
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

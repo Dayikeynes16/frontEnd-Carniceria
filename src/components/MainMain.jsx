@@ -2,7 +2,6 @@ import { BoxMain } from "./BoxMain";
 import { NavMain } from "./NavMain";
 import { useContext, useState } from "react";
 import { ContentMet } from "./ContentMet";
-import { mets } from "../mets";
 import { MetContext } from "./context/metContext";
 import { Loading } from "./Loading";
 import { ContentAlerts } from './ContentAlerts';
@@ -20,7 +19,7 @@ export const MainMain = () => {
             <ContentAlerts />
 
             {
-                screenMet &&  <ContentMet mets={ mets } />
+                screenMet &&  <ContentMet />
             }
 
             <NavMain />

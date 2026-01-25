@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import { MetContext } from "./context/metContext";
 
-export const MinBoxProductAdded = ({ data }) => {
+export const MinBoxProductAdded = ({ data, product_id }) => {
 
   const { setProducts, products, setTotal, total } = useContext( MetContext );
 
   const onDelete = () => {
-    const res = products.filter( product => product?.id !== data?.id );
+    const res = products.filter( product => product?.producto_id_cesta  !== data?.producto_id_cesta );
     localStorage.setItem('products', JSON.stringify(res));
     
     const newTotal = (( total - parseFloat(data?.cost) ) >= 0 ) ? total - parseFloat(data?.cost) : 0.00;

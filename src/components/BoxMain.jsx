@@ -20,7 +20,7 @@ export const BoxMain = () => {
             
             <div className="boxMainNotes">
                 { 
-                    products.map( product => <MinBoxProductAdded key={ product.id} data={product} /> ) 
+                    products.map( (product,index) => <MinBoxProductAdded key={ `${product.id}-${index}`} data={product} /> ) 
                 }
             </div>
         </div>
