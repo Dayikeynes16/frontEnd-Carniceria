@@ -1,7 +1,9 @@
 {
   "name": "front-end",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Punto de venta para carniceria",
+  "author": "Corte Exacto",
   "type": "module",
   "main": "electron/main.cjs",
   "scripts": {
@@ -52,6 +54,13 @@
     "win": {
       "target": "nsis",
       "icon": "electron/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Corte Exacto"
     },
     "linux": {
       "target": "AppImage"
