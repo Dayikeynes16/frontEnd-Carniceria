@@ -3,21 +3,21 @@ import { MetContext } from "./context/metContext";
 
 export const ButtonDouble = () => {
 
-    const { setFilter } = useContext( MetContext )
+    const { setViewMode, viewMode } = useContext( MetContext )
 
-    const [activeSpan, setActiveSpan] = useState('one');
+    // const [activeSpan, setActiveSpan] = useState('one'); // Derived from context now
 
     const handleClick = (span) => {
-        setActiveSpan(span);
-        setFilter(span);
+        // setActiveSpan(span);
+        setViewMode(span);
     };
 
     return (
         <button className="btn btn-text buttonDouble" type="button">
-            <span onClick={ () => handleClick('one') } className={`buttonDoubleBtn buttonDoubleOne ${ activeSpan === 'one' ? 'buttonDoubleActive' : '' }`}>
+            <span onClick={ () => handleClick('one') } className={`buttonDoubleBtn buttonDoubleOne ${ viewMode === 'one' ? 'buttonDoubleActive' : '' }`}>
                 Kg
             </span>
-            <span onClick={ () => handleClick('two') } className={`buttonDoubleBtn buttonDoubleOne ${ activeSpan === 'two' ? 'buttonDoubleActive' : '' }`}>
+            <span onClick={ () => handleClick('two') } className={`buttonDoubleBtn buttonDoubleOne ${ viewMode === 'two' ? 'buttonDoubleActive' : '' }`}>
                 Pieza
             </span>
         </button>
