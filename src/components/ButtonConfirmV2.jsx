@@ -1,14 +1,13 @@
+    // saleData no longer needed here as processSale generates it internally
+    // const saleData = ... removed
 import { useContext } from "react";
 import { MetContext } from "./context/metContext";
 import { useAlerts } from "../hooks/useAlerts";
-import { db } from "../db";
 import { processSale } from "../helpers/sales";
 
 export const ButtonConfirmV2 = ({ label }) => {
   const { setProducts, products, noteProduct, setLoading, setTotal } = useContext(MetContext);
   const { addAlert } = useAlerts();
-
-
 
   const sendOrder = async () => {
     if (products.length === 0 || noteProduct?.id) {
@@ -18,35 +17,16 @@ export const ButtonConfirmV2 = ({ label }) => {
 
     setLoading(true);
 
-    const saleData = {
-      products: products,
-      timestamp: new Date().toISOString(),
-    };
-
-    if (!navigator.onLine) {
-       // Offline Mode: Queue sale
-       try {
-           await db.salesQueue.add({
-               data: saleData,
-               status: 'pending',
-               timestamp: new Date().toISOString()
-           });
-           addAlert("Venta guardada Offline. Se sincronizará al conectar.", "alert-blue");
-           setProducts([]);
-           setTotal(0);
-       } catch (error) {
-           console.error("Error queueing offline sale:", error);
-           addAlert("Error al guardar venta offline", "alert-red");
-       } finally {
-           setLoading(false);
-       }
-       return;
-    }
-
-    // Online Mode: Process normally
+    // Unified Processing (Online & Offline handled by helper)
     try {
-        await processSale(products);
-        addAlert("Venta realizada con éxito", "alert-green");
+        const result = await processSale(products);
+        
+        if (result.offline) {
+             addAlert("Venta guardada Offline. Se sincronizará al conectar.", "alert-blue");
+        } else {
+             addAlert("Venta realizada con éxito", "alert-green");
+        }
+        
         setProducts([]);
         setTotal(0);
     } catch (error) {

@@ -1,5 +1,86 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
+:root {
+  --bg-color: #eeedf2;
+  --text-color: #08070a;
+  --card-bg: #ffffff;
+  --accent-color: #267365;
+  --accent-hover: #1e5c50;
+  --danger-color: #ba2222;
+  --secondary-bg: #f0f0f0;
+  --secondary-bg-hover: #ebe0d5;
+  --border-color: #ddd;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --accent-color: #267365;
+  --accent-hover: #3aaea0;
+  --danger-color: #cf6679;
+  --secondary-bg: #333333;
+  --secondary-bg-hover: #444444;
+  --border-color: #444;
+}
+
+/* Apply variables to existing elements */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.contentMet,
+.minBoxProductAdded,
+.navMain,
+.noteMet,
+.btn-category {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.targgetMet {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+}
+
+.targgetMet:hover,
+.targgetMetSelect {
+  background-color: var(--secondary-bg-hover);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li,
+i {
+  color: var(--text-color);
+}
+
+.buttonConfirm {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.seeker input {
+  border-bottom-color: var(--accent-color);
+  color: var(--text-color);
+  background: transparent;
+}
+
+.seeker input::placeholder {
+  color: var(--accent-color);
+}
+
+.seeker button i {
+  color: var(--accent-color);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -239,8 +320,8 @@ input:focus {
 }
 
 .buttonCart {
-  border: 1px solid #08070a;
-  background-color: #08070a;
+  border: 1px solid #267365;
+  background-color: #267365;
   color: #ffffff;
 }
 

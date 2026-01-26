@@ -42,6 +42,31 @@ export const MetProvider = ({ children }) => {
     const [viewMode, setViewMode] = useState('one'); // viewMode: 'one' (kg), 'two' (piece)
     const [show, setShow] = useState([]); // displayed products
     const [new_product, setNewProduct] = useState(0);
+    const [currentView, setCurrentView] = useState('POS'); // POS, SETTINGS, HISTORY
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+    // Online status listener & Theme Loader
+    useEffect(() => {
+        const handleStatusChange = () => setIsOnline(navigator.onLine);
+        window.addEventListener('online', handleStatusChange);
+        window.addEventListener('offline', handleStatusChange);
+
+        // Load Theme
+        import("../../helpers/settings").then(({ getTheme }) => {
+            getTheme().then(theme => {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+        });
+
+        return () => {
+            window.removeEventListener('online', handleStatusChange);
+            window.removeEventListener('offline', handleStatusChange);
+        };
+    }, []);
 
     // Update 'show' when filters or allProducts change
     useEffect(() => {
@@ -121,9 +146,32 @@ export const MetProvider = ({ children }) => {
                     const { data, error } = await supabase.from('productos').select('*');
                     if (error) throw error;
                     if (data) {
+                        // Cache images
+                        const productsWithImages = await Promise.all(data.map(async (p) => {
+                            // If imagen is a URL, try to fetch and convert to Base64
+                            if (p.imagen && p.imagen.startsWith('http')) {
+                                try {
+                                    const response = await fetch(p.imagen);
+                                    if (response.ok) {
+                                        const blob = await response.blob();
+                                        return new Promise((resolve) => {
+                                            const reader = new FileReader();
+                                            reader.onloadend = () => {
+                                                resolve({ ...p, imagen: reader.result }); // Save Base64
+                                            };
+                                            reader.readAsDataURL(blob);
+                                        });
+                                    }
+                                } catch (e) {
+                                    console.warn(`Failed to cache image for ${p.nombre}`, e);
+                                }
+                            }
+                            return p;
+                        }));
+
                         // Bulk put to update/insert products
-                        await db.products.bulkPut(data);
-                        console.log('Products synced from Supabase');
+                        await db.products.bulkPut(productsWithImages);
+                        console.log('Products synced from Supabase (with images)');
                     }
                 } catch (err) {
                     console.error('Error syncing products:', err);
@@ -139,41 +187,52 @@ export const MetProvider = ({ children }) => {
     }, []);
 
     // Sync Sales Queue when online
+    // Sync Sales when online (New Logic using 'sales' table is_synced flag)
     useEffect(() => {
-        const syncSales = async () => {
-            if (navigator.onLine) {
-                const pendingSales = await db.salesQueue.filter(s => s.status === 'pending').toArray();
-                if (pendingSales.length === 0) return;
+        const checkConnectivityAndSync = async () => {
+             // Basic navigator check first
+             if (!navigator.onLine) return;
 
-                console.log(`Intentando sincronizar ${pendingSales.length} ventas offline...`);
+             // Real connectivity check: Ping a reliable endpoint (e.g., Supabase or Google)
+             try {
+                // Using Supabase URL or just a fast endpoint if available. 
+                // Since we use Supabase anyway, let's just try to import and run syncSales
+                // If the import fails or syncSales fails due to network, it will catch.
+                // But to be SURE we are "really" online, a small fetch helps.
+                // We'll skip the fetch for now to save bandwidth/latency and just rely on the try/catch in syncSales 
+                // BUT we will add a small random delay to prevent thundering herd if many devices come online instantly
                 
-                // Import dynamically to avoid circular dependencies if any, or just trust the helper
-                const { processSale } = await import("../../helpers/sales");
+                // Wait 3 seconds to let network stack settle
+                await new Promise(r => setTimeout(r, 3000));
+                
+                const { syncSales } = await import("../../helpers/sales");
+                console.log("Network online. Attempting synchronization...");
+                await syncSales();
 
-                for (const sale of pendingSales) {
-                    try {
-                        await processSale(sale.data.products);
-                        await db.salesQueue.delete(sale.id);
-                        console.log(`Venta offline ${sale.id} sincronizada.`);
-                    } catch (err) {
-                        console.error(`Error sincronizando venta ${sale.id}:`, err);
-                        // Optional: update status to 'failed' or retry later
-                    }
-                }
-            }
+             } catch (e) {
+                 console.error("Connectivity check or Sync failed:", e);
+             }
         };
 
         const onOnline = () => {
-            console.log("App is Online. Syncing...");
-            syncSales();
+            console.log("Detected 'online' event. Initiating sync sequence...");
+            checkConnectivityAndSync();
         };
 
         window.addEventListener('online', onOnline);
         
-        // Initial check
-        syncSales();
+        // Initial check on mount
+        checkConnectivityAndSync();
 
-        return () => window.removeEventListener('online', onOnline);
+        // Periodic safety check every 30s
+        const interval = setInterval(() => {
+            if (navigator.onLine) checkConnectivityAndSync();
+        }, 30000);
+
+        return () => {
+             window.removeEventListener('online', onOnline);
+             clearInterval(interval);
+        };
     }, []);
 
     const [scaleStatus, setScaleStatus] = useState({ status: 'unknown', message: '' });
@@ -214,7 +273,9 @@ export const MetProvider = ({ children }) => {
             total, setTotal, 
             amount, setAmount, 
             cost, setCost,
-            scaleStatus // Exposed
+            scaleStatus, // Exposed
+            currentView, setCurrentView,
+            isOnline
         }}>
             { children }
         </MetContext.Provider>

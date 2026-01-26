@@ -1,39 +1,32 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { ButtonCart, ButtonConfirmV2, ButtonDelete } from "./"
+import { StatusIndicator } from "./StatusIndicator";
+import { MetContext } from "./context/metContext";
 
 export const NavMain = () => {
 
-
-
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-
-  useEffect(() => {
-    const handleStatusChange = () => {
-      setIsOnline(navigator.onLine);
-    };
-
-    window.addEventListener('online', handleStatusChange);
-    window.addEventListener('offline', handleStatusChange);
-    return () => {
-      window.removeEventListener('online', handleStatusChange);
-      window.removeEventListener('offline', handleStatusChange);
-    };
-  }, []);
+  const { setCurrentView } = useContext(MetContext);
 
   return (
     <div className="navMain">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ 
-                height: '10px', 
-                width: '10px', 
-                backgroundColor: isOnline ? '#2ecc71' : '#e74c3c', 
-                borderRadius: '50%', 
-                display: 'inline-block' 
-            }} title={isOnline ? "Online via Supabase" : "Offline Mode (Saved to Device)"}></span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <StatusIndicator />
             <ButtonCart label={'Añadir'} />
             <ButtonConfirmV2 label={'Terminar'} />
         </div>
-        <div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+            <button 
+                onClick={() => setCurrentView('HISTORY')}
+                style={{ padding: '10px 15px', borderRadius: '5px', border: '1px solid #ccc', cursor: 'pointer', background: 'var(--card-bg)', color: 'var(--text-color)' }}
+            >
+                Historial
+            </button>
+            <button 
+                onClick={() => setCurrentView('SETTINGS')}
+                style={{ padding: '10px 15px', borderRadius: '5px', border: '1px solid #ccc', cursor: 'pointer', background: 'var(--card-bg)', color: 'var(--text-color)' }}
+            >
+                Configuración
+            </button>
             <ButtonDelete label={'Eliminar'} />    
         </div>
         
