@@ -37,7 +37,7 @@ export const ButtonConfirmV2 = ({ label }) => {
         .insert({
           created_at: getMexicoTime(),
           total: 0,
-          balanza: 2,
+          balanza: 1,
           pagado: false,
           estatus: "activo",
         })
@@ -65,17 +65,6 @@ export const ButtonConfirmV2 = ({ label }) => {
       }
 
       // 3️⃣ Insertar el pago asociado a la venta
-      const { error: pagoError } = await supabase
-        .from("pagos")
-        .insert({
-          created_at: getMexicoTime(),
-          venta_id: venta.id,
-          total: total_venta, // Se actualizará después si es necesario
-          pendiente: total_venta,
-          metodo: "" // Puede cambiar dependiendo del pago
-        });
-
-      if (pagoError) throw pagoError;
 
       // 4️⃣ Actualizar el total de la venta
       const { error: updateVentaError } = await supabase

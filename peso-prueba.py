@@ -4,7 +4,7 @@ import socketio
 from aiohttp import web
 
 # Configuración del puerto serial
-port = '/dev/ttyUSB0'  # Reemplaza con el puerto correcto
+port = 'COM3'  # Reemplaza con el puerto correcto
 baudrate = 9600  # Velocidad en baudios según el manual
 timeout = 0.1  # Timeout aumentado para la lectura
 
